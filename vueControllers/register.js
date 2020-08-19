@@ -8,7 +8,7 @@ var app = new Vue({
         sample: 'Register Account',
         emailField: "",
         passwordField: "",
-        wait: ""
+        wait: "",
     },
     methods: {
         registerUser(){
@@ -29,6 +29,18 @@ var app = new Vue({
             // });
         }
     }
-})
+});
+
+// auth.onAuthStateChanged(function(user){
+//     if(user){
+//         alert("Registered account with: " + user.email);
+//         this.wait = "Please wait while we redirect you to the login page."
+//         sleep(5000).then(() => {
+//             window.location.href = "./login.html";
+//         });
+//     }else{
+//         alert("No active user");
+//     }
+// });
 
 

@@ -28,11 +28,14 @@
 
 		<!-- Three -->
 			<section id="three" class="wrapper">
-				<div class="inner">
+				<div class="inner" id="login">
 					<header class="align-center">
 						<h2>Login</h2>
-						<a href="./register.html">Already have an account? Click here to register</a>
-					</header>
+						<input v-model="emailField" type="email" placeholder="Email"><br>
+						<input v-model="passwordField" type="password" placeholder="Password"><br>
+
+						<button v-on:click="registerUser">{{sample}}</button><br>
+						<h2>{{wait}}</h2></header>
 					<div class="image round left">
 						<img src="images/pic01.jpg" alt="Pic 01" />
 					</div>
@@ -82,6 +85,32 @@
 			</footer>
 
 		<!-- Scripts -->
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+
+		<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBA2d2vzK_g3t3Ub7KQfRRsffocO0Eoi3E",
+			authDomain: "uts-ses-1a.firebaseapp.com",
+			databaseURL: "https://uts-ses-1a.firebaseio.com",
+			projectId: "uts-ses-1a",
+			storageBucket: "uts-ses-1a.appspot.com",
+			messagingSenderId: "515479105350",
+			appId: "1:515479105350:web:a85bad56a20ba250013f47",
+			measurementId: "G-0J82RMX5FR"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+		const auth = firebase.auth();
+		</script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="./vueControllers/login.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
