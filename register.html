@@ -38,8 +38,8 @@
 					
 						<table>
 							<tr>
-								<td><input name="name" id="firstName" type="text" placeholder="First Name"></td>
-								<td><input name="name" id="lastName" type="text" placeholder="Last Name"></td>
+								<td><input v-model="firstField" id="firstName" type="text" placeholder="First Name"></td>
+								<td><input v-model="lastField" id="lastName" type="text" placeholder="Last Name"></td>
 							</tr>
 						</table>
 						<table>
@@ -53,16 +53,16 @@
 
 						</div>
 						<input v-model="passwordField" type="password" placeholder="Password"><br>
+						<input v-model="passwordFieldConfirm" type="password" placeholder="Confirm Password"><br>
 						<input v-model="addressField" type="text" placeholder="Address"><br>
 						<input v-model="phoneField" type="text" placeholder="Phone"><br>
 
 						<h4>I want to register as a:</h4>
 						<ol>
-							<input type="radio" id="patient" name="client" value="patient" checked>
+							<input v-bind:value="'patient'" v-model="client" type="radio" id="patient" name="client" value="patient" checked>
 							<label for="patient">Patient</label><br>
-							<input type="radio" id="doctor" name="client" value="doctor">
+							<input v-bind:value="'doctor'" v-model="client" type="radio" id="doctor" name="client" value="doctor">
 							<label for="doctor">Doctor</label><br>
-							
 						</ol>
 
 						<button v-on:click="registerUser">{{sample}}</button><br>
@@ -123,6 +123,7 @@
 			<!-- The core Firebase JS SDK is always required and must be listed first -->
 			<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
 			<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
 
 			<!-- TODO: Add SDKs for Firebase products that you want to use
 				https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -142,6 +143,7 @@
 			};
 			// Initialize Firebase
 			firebase.initializeApp(firebaseConfig);
+			var db = firebase.firestore();
 			// firebase.analytics();
 			const auth = firebase.auth();
 			</script>

@@ -45,28 +45,64 @@ var register = new Vue({
     el: '#register',
     data: {
         sample: 'Register Account',
+        firstField: "",
+        lastField: "",
         emailField: "",
         passwordField: "",
+        passwordFieldConfirm: "",
         addressField: "",
-        phoneField: "",
+        phoneField: null,
         wait: "",
+        client: ""
     },
     methods: {
         registerUser(){
-            var email = this.emailField;
-            this.emailField = null;
 
-            var password = this.passwordField;
-            this.passwordField = null;
+            if(this.passwordField === this.passwordFieldConfirm){
+                
+                this.phoneField = parseInt(this.phoneField);
+                if(!Number.isNaN(this.phoneField)){
+                    console.log(this.client);
 
-            auth.createUserWithEmailAndPassword(email, password).then(user => {
-                this.wait = "Please wait while we register your account and sign you in.";
-                sleep(5000).then(() => {
-                    this.sample = 'Account Registered!';
-                    this.wait = "";
-                    console.log(user);
-                });
-            }).catch(e => {alert(e.message)});
+                    if(this.client){
+                        auth.createUserWithEmailAndPassword(this.emailField, this.passwordField).then(cred => {
+                        this.wait = "Please wait while we register your account and sign you in.";
+        
+                        //Add the client to the database as well
+                        db.collection(this.client).doc(cred.user.uid).set({
+                            first: this.firstField,
+                            last: this.lastField,
+                            email: this.emailField,
+                            assress: this.addressField,
+                            phone: this.phoneField
+                        })
+                        .catch(function(error) {
+                            console.error("Error adding document: ", error);
+                        });
+        
+                        sleep(5000).then(() => {
+                            this.sample = 'Account Registered!';
+                            this.wait = "";
+                            console.log(cred);
+        
+                            sleep(2000).then(() => {
+                                window.location.href = "./index.html";
+                            });
+                        });
+    
+                        }).catch(e => {alert(e.message)});
+                    }else{
+                        alert("Please select whether you are a Patient or Doctor.");
+                    }
+
+                    
+                }else{
+                    alert("Invalid phone number entered.");
+                }
+                
+            }else{
+                alert("The two password fields do not match.");
+            }
         },
         
     }
