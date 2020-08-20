@@ -131,7 +131,34 @@
 		</footer>
 
 		<!-- Scripts -->
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
+		<!-- <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script> -->
+
+		<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBA2d2vzK_g3t3Ub7KQfRRsffocO0Eoi3E",
+			authDomain: "uts-ses-1a.firebaseapp.com",
+			databaseURL: "https://uts-ses-1a.firebaseio.com",
+			projectId: "uts-ses-1a",
+			storageBucket: "uts-ses-1a.appspot.com",
+			messagingSenderId: "515479105350",
+			appId: "1:515479105350:web:a85bad56a20ba250013f47",
+			measurementId: "G-0J82RMX5FR"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		//firebase.analytics();
+		const auth = firebase.auth();
+		</script>
+
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="./vueControllers/home.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
 		<script src="assets/js/util.js"></script>

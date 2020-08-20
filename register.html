@@ -15,12 +15,13 @@
 
 		<!-- Header -->
 		<header id="header">
-			<div class="inner">
+			<div class="inner" id="navID">
 				<a href="index.html" class="logo"><strong>EH</strong>ealth</a>
 				<nav id="nav">
 					<a href="index.html">Home</a>
 					<a href="register.html">Register</a>
 					<a href="login.html">Login</a>
+					<a href="javascript:signOut();">Log Out</a>
 				</nav>
 				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 			</div>
@@ -34,8 +35,8 @@
 					
 						<table>
 							<tr>
-								<td><input name="name" id="name" type="text" placeholder="First Name"></td>
-								<td><input name="name" id="name" type="text" placeholder="Last Name"></td>
+								<td><input name="name" id="firstName" type="text" placeholder="First Name"></td>
+								<td><input name="name" id="lastName" type="text" placeholder="Last Name"></td>
 							</tr>
 						</table>
 						<table>
@@ -109,7 +110,7 @@
 					</form>
 
 					<div class="copyright">
-						Made at UTS SES 1A, Group 3 Spring 2020. Images: <a href="https://unsplash.com">Unsplash</a><div class="p"></div> <a href="http://">Source code can be found here</a>
+						Made at UTS SES 1A, Group 3 Spring 2020. Images: <a href="https://unsplash.com">Unsplash</a><div class="p"></div> <a href="https://github.com/Atharva-Kapare/UTS-SES-1A/tree/master">Source code can be found here</a>
 					</div>
 
 				</div>
@@ -122,7 +123,7 @@
 
 			<!-- TODO: Add SDKs for Firebase products that you want to use
 				https://firebase.google.com/docs/web/setup#available-libraries -->
-			<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+			<!-- <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script> -->
 
 			<script>
 			// Your web app's Firebase configuration
@@ -138,7 +139,7 @@
 			};
 			// Initialize Firebase
 			firebase.initializeApp(firebaseConfig);
-			firebase.analytics();
+			// firebase.analytics();
 			const auth = firebase.auth();
 			</script>
 

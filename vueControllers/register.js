@@ -1,3 +1,15 @@
+function signOut(){
+    auth.signOut();
+};
+
+auth.onAuthStateChanged(user =>{
+    if(user){
+        console.log("Signed in as: " + user.email);
+    } else{
+        console.log("Not signed in");
+    }
+});
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -8,6 +20,8 @@ var app = new Vue({
         sample: 'Register Account',
         emailField: "",
         passwordField: "",
+        addressField: "",
+        phoneField: "",
         wait: "",
     },
     methods: {
@@ -18,29 +32,18 @@ var app = new Vue({
             var password = this.passwordField;
             this.passwordField = null;
 
-            const promise = auth.createUserWithEmailAndPassword(email, password);
-            promise.catch(e => {alert(e.message)});
-            this.sample = 'Account Registered!';
-            // // Still need to figure out how to handle errors, 
-            // // this code will send the user to the login screen regardless if they have entered a valid email
-            // this.wait = "Please wait while we redirect you to the login page."
-            // sleep(5000).then(() => {
-            //     window.location.href = "./login.html";
-            // });
-        }
+            auth.createUserWithEmailAndPassword(email, password).then(user => {
+                this.wait = "Please wait while we register your account and sign you in.";
+                sleep(5000).then(() => {
+                    this.sample = 'Account Registered!';
+                    this.wait = "";
+                    console.log(user);
+                });
+            }).catch(e => {alert(e.message)});
+        },
+        
     }
 });
 
-// auth.onAuthStateChanged(function(user){
-//     if(user){
-//         alert("Registered account with: " + user.email);
-//         this.wait = "Please wait while we redirect you to the login page."
-//         sleep(5000).then(() => {
-//             window.location.href = "./login.html";
-//         });
-//     }else{
-//         alert("No active user");
-//     }
-// });
 
 
