@@ -15,13 +15,16 @@
 
 		<!-- Header -->
 		<header id="header">
-			<div class="inner">
+			<div class="inner" id="navID">
 				<a href="index.html" class="logo"><strong>EH</strong>ealth</a>
 				<nav id="nav">
 					<a href="index.html">Home</a>
-					<a href="register.html">Register</a>
-					<a href="login.html">Sign In</a>
-					<a href="login.html">Sign Out</a>
+				
+					<a v-if="log" href="profile.html">Profile</a>
+					<a v-if="!log" href="register.html">Register</a>
+					<a v-if="!log" href="login.html">Login</a>
+					<a v-if="log" href="javascript:signOut();">Log Out</a>
+
 				</nav>
 				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 			</div>
@@ -114,6 +117,7 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="./vueControllers/login.js"></script>
+		<script src="./vueControllers/register.js"></script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
 		<script src="assets/js/util.js"></script>

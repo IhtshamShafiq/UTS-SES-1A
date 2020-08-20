@@ -1,3 +1,26 @@
+var LOGGEDIN = true;
+
+// const loggedOutLinks = document.querySelectorAll('.logged-out');
+// const loggedInLinks = document.querySelectorAll('.logged-in');
+
+// const setUpUI = (user) => {
+//     if(user){
+//         loggedInLinks.forEach(item => item.style.display = 'block');
+//         loggedOutLinks.forEach(item => item.style.display = 'none');
+//     } else{
+//         loggedInLinks.forEach(item => item.style.display = 'none');
+//         loggedOutLinks.forEach(item => item.style.display = 'block');
+//     }
+// };
+
+var nav = new Vue({
+    el: '#navID',
+    data: {
+        log: true
+    }
+});
+
+
 function signOut(){
     auth.signOut();
 };
@@ -5,8 +28,12 @@ function signOut(){
 auth.onAuthStateChanged(user =>{
     if(user){
         console.log("Signed in as: " + user.email);
+        nav.log = true;
+        // setUpUI(user);
     } else{
         console.log("Not signed in");
+        nav.log = false;
+        // setUpUI(user);
     }
 });
 
@@ -14,7 +41,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-var app = new Vue({
+var register = new Vue({
     el: '#register',
     data: {
         sample: 'Register Account',
@@ -44,6 +71,8 @@ var app = new Vue({
         
     }
 });
+
+
 
 
 
